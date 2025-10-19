@@ -1,11 +1,13 @@
 import {
 	ICredentialType,
 	INodeProperties,
+	Icon,
 } from 'n8n-workflow';
 
 export class OnPrintShopApi implements ICredentialType {
 	name = 'onPrintShopApi';
 	displayName = 'OnPrintShop API';
+	icon: Icon = 'file:onprintshop.svg';
 	documentationUrl = 'https://documenter.getpostman.com/view/33263100/2sA3kVmMgH#intro';
 	properties: INodeProperties[] = [
 		{

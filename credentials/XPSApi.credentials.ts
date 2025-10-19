@@ -1,11 +1,13 @@
 import {
 	ICredentialType,
 	INodeProperties,
+	Icon,
 } from 'n8n-workflow';
 
 export class XPSApi implements ICredentialType {
 	name = 'xpsApi';
 	displayName = 'XPS Ship API';
+	icon: Icon = 'file:xpsshipper.svg';
 	documentationUrl = 'https://xpsship.rocksolidinternet.com/restapi/docs/v1-ecommerce/endpoints/overview/';
 	properties: INodeProperties[] = [
 		{

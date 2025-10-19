@@ -1,11 +1,13 @@
 import {
 	ICredentialType,
 	INodeProperties,
+	Icon,
 } from 'n8n-workflow';
 
 export class MightyCallApi implements ICredentialType {
 	name = 'mightyCallApi';
 	displayName = 'MightyCall API';
+	icon: Icon = 'file:mightycall.svg';
 	documentationUrl = 'https://api.mightycall.com/v4/doc#tag/Authentication/Auth-POST-authtoken';
 	properties: INodeProperties[] = [
 		{
