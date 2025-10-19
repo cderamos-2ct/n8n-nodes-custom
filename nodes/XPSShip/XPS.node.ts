@@ -1239,6 +1239,17 @@ export class XPS implements INodeType {
 						const parsedData = JSON.parse(responseData);
 						if (Array.isArray(parsedData)) {
 							returnData.push(...parsedData);
+						} else if (parsedData && typeof parsedData === 'object') {
+							// Check if the object contains arrays that should be flattened
+							if (parsedData.services && Array.isArray(parsedData.services)) {
+								returnData.push(...parsedData.services);
+							} else if (parsedData.shipments && Array.isArray(parsedData.shipments)) {
+								returnData.push(...parsedData.shipments);
+							} else if (parsedData.quotes && Array.isArray(parsedData.quotes)) {
+								returnData.push(...parsedData.quotes);
+							} else {
+								returnData.push(parsedData);
+							}
 						} else {
 							returnData.push(parsedData);
 						}
@@ -1252,7 +1263,16 @@ export class XPS implements INodeType {
 				} else if (Array.isArray(responseData)) {
 					returnData.push(...responseData);
 				} else if (responseData && typeof responseData === 'object') {
-					returnData.push(responseData);
+					// Check if the object contains arrays that should be flattened
+					if (responseData.services && Array.isArray(responseData.services)) {
+						returnData.push(...responseData.services);
+					} else if (responseData.shipments && Array.isArray(responseData.shipments)) {
+						returnData.push(...responseData.shipments);
+					} else if (responseData.quotes && Array.isArray(responseData.quotes)) {
+						returnData.push(...responseData.quotes);
+					} else {
+						returnData.push(responseData);
+					}
 				} else {
 					// Handle other types by wrapping them in an object
 					returnData.push({
