@@ -1,0 +1,127 @@
+{
+  "onprintshop_example": {
+    "name": "OnPrintShop - Get Orders",
+    "description": "Example workflow to fetch orders from OnPrintShop",
+    "nodes": [
+      {
+        "name": "Start",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [250, 300]
+      },
+      {
+        "name": "Get Orders",
+        "type": "n8n-nodes-custom.onPrintShop",
+        "position": [450, 300],
+        "parameters": {
+          "resource": "order",
+          "operation": "getAll",
+          "additionalFields": {
+            "limit": 10
+          }
+        },
+        "credentials": {
+          "onPrintShopApi": {
+            "id": "1",
+            "name": "OnPrintShop Account"
+          }
+        }
+      }
+    ],
+    "connections": {
+      "Start": {
+        "main": [[{"node": "Get Orders", "type": "main", "index": 0}]]
+      }
+    }
+  },
+  "mightycall_example": {
+    "name": "MightyCall - Create Contact",
+    "description": "Example workflow to create a contact in MightyCall",
+    "nodes": [
+      {
+        "name": "Start",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [250, 300]
+      },
+      {
+        "name": "Create Contact",
+        "type": "n8n-nodes-custom.mightyCall",
+        "position": [450, 300],
+        "parameters": {
+          "resource": "contact",
+          "operation": "create",
+          "additionalFields": {
+            "firstName": "John",
+            "lastName": "Doe",
+            "email": "john.doe@example.com",
+            "phone": "+1234567890",
+            "company": "Example Corp"
+          }
+        },
+        "credentials": {
+          "mightyCallApi": {
+            "id": "1",
+            "name": "MightyCall Account"
+          }
+        }
+      }
+    ],
+    "connections": {
+      "Start": {
+        "main": [[{"node": "Create Contact", "type": "main", "index": 0}]]
+      }
+    }
+  },
+  "mightycall_tag_example": {
+    "name": "MightyCall - List Contacts with Tags",
+    "description": "Example workflow to list all contacts and their tags",
+    "nodes": [
+      {
+        "name": "Start",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [250, 300]
+      },
+      {
+        "name": "Get All Contacts",
+        "type": "n8n-nodes-custom.mightyCall",
+        "position": [450, 300],
+        "parameters": {
+          "resource": "contact",
+          "operation": "getAll",
+          "additionalFields": {
+            "limit": 50
+          }
+        },
+        "credentials": {
+          "mightyCallApi": {
+            "id": "1",
+            "name": "MightyCall Account"
+          }
+        }
+      },
+      {
+        "name": "Get All Tags",
+        "type": "n8n-nodes-custom.mightyCall",
+        "position": [650, 300],
+        "parameters": {
+          "resource": "tag",
+          "operation": "getAll"
+        },
+        "credentials": {
+          "mightyCallApi": {
+            "id": "1",
+            "name": "MightyCall Account"
+          }
+        }
+      }
+    ],
+    "connections": {
+      "Start": {
+        "main": [[{"node": "Get All Contacts", "type": "main", "index": 0}]]
+      },
+      "Get All Contacts": {
+        "main": [[{"node": "Get All Tags", "type": "main", "index": 0}]]
+      }
+    }
+  }
+}
+

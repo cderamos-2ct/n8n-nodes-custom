@@ -1,0 +1,137 @@
+================================================================================
+                    GITHUB PUSH COMMANDS - COPY & PASTE
+================================================================================
+
+IMPORTANT: Open a NEW PowerShell window first (to pick up Git in PATH)
+
+Then copy and paste these commands one at a time:
+
+================================================================================
+STEP 1: Navigate to your custom nodes directory
+================================================================================
+
+cd C:\Docker\n8n\custom-nodes
+
+================================================================================
+STEP 2: Verify Git is working
+================================================================================
+
+git --version
+
+(Should show: git version 2.x.x)
+
+================================================================================
+STEP 3: Initialize repository and configure
+================================================================================
+
+git init
+git config user.name "cderamos-2ct"
+git config user.email "cderamos@2ct.com"
+
+================================================================================
+STEP 4: Stage all files
+================================================================================
+
+git add .
+
+================================================================================
+STEP 5: Verify what will be committed
+================================================================================
+
+git status
+
+(Check that node_modules and dist are NOT listed - they should be ignored)
+
+================================================================================
+STEP 6: Create initial commit
+================================================================================
+
+git commit -m "Initial release v1.0.0
+
+- Add MightyCall node with full API coverage
+- Add OnPrintShop node with print job management  
+- Add XPS Ship node with shipping automation
+- Include custom branded icons for all nodes
+- Add comprehensive documentation"
+
+================================================================================
+STEP 7: Add GitHub remote
+================================================================================
+
+git remote add origin https://github.com/cderamos-2ct/n8n-nodes-custom.git
+
+================================================================================
+STEP 8: Rename branch to main
+================================================================================
+
+git branch -M main
+
+================================================================================
+STEP 9: Push to GitHub
+================================================================================
+
+git push -u origin main
+
+(You will be prompted for credentials - see below)
+
+================================================================================
+AUTHENTICATION
+================================================================================
+
+If prompted for credentials:
+
+Username: cderamos-2ct
+Password: [Use Personal Access Token - NOT your GitHub password]
+
+To create a Personal Access Token:
+1. Go to: https://github.com/settings/tokens
+2. Click "Generate new token (classic)"
+3. Note: "n8n custom nodes access"
+4. Select scope: ✅ repo (Full control of private repositories)
+5. Click "Generate token"
+6. COPY THE TOKEN IMMEDIATELY (you won't see it again!)
+7. Use this token as your password when pushing
+
+================================================================================
+ALTERNATIVE: Use GitHub Desktop
+================================================================================
+
+If command line authentication is difficult:
+
+1. Download GitHub Desktop: https://desktop.github.com
+2. Install and sign in to GitHub
+3. File → Add Local Repository → Select: C:\Docker\n8n\custom-nodes
+4. Click "Publish repository"
+5. Ensure "Keep code private" is UNCHECKED (must be public)
+6. Click "Publish Repository"
+
+================================================================================
+AFTER SUCCESSFUL PUSH
+================================================================================
+
+1. Go to: https://github.com/cderamos-2ct/n8n-nodes-custom
+2. Verify your files are there
+3. README.md should display on the main page
+4. Create a release:
+   - Click "Releases" → "Create a new release"
+   - Tag: v1.0.0
+   - Title: v1.0.0 - Initial Release
+   - Description: See CHANGELOG.md for details
+   - Attach file: cderamos-2ct-n8n-nodes-custom-1.0.0.tgz
+   - Click "Publish release"
+
+================================================================================
+VERIFICATION
+================================================================================
+
+After pushing, verify:
+- [ ] Repository shows all files on GitHub
+- [ ] README.md displays correctly on main page
+- [ ] node_modules is NOT in the repository
+- [ ] dist directory is NOT in the repository
+- [ ] All .ts files are present
+- [ ] All .svg icon files are present
+- [ ] Documentation files are visible
+
+================================================================================
+
