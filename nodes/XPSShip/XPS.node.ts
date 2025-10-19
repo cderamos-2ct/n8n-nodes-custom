@@ -1234,8 +1234,14 @@ export class XPS implements INodeType {
 				
 				if (Array.isArray(responseData)) {
 					returnData.push(...responseData);
-				} else {
+				} else if (responseData && typeof responseData === 'object') {
 					returnData.push(responseData);
+				} else {
+					// Handle string responses by wrapping them in an object
+					returnData.push({
+						data: responseData,
+						json: responseData
+					});
 				}
 			} catch (error) {
 				if (this.continueOnFail()) {
