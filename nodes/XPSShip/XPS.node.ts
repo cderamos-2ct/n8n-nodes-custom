@@ -1232,12 +1232,29 @@ export class XPS implements INodeType {
 					}
 				}
 				
-				if (Array.isArray(responseData)) {
+				// Handle the response data properly
+				if (typeof responseData === 'string') {
+					try {
+						// Try to parse JSON string
+						const parsedData = JSON.parse(responseData);
+						if (Array.isArray(parsedData)) {
+							returnData.push(...parsedData);
+						} else {
+							returnData.push(parsedData);
+						}
+					} catch (error) {
+						// If not JSON, wrap the string in an object
+						returnData.push({
+							data: responseData,
+							json: responseData
+						});
+					}
+				} else if (Array.isArray(responseData)) {
 					returnData.push(...responseData);
 				} else if (responseData && typeof responseData === 'object') {
 					returnData.push(responseData);
 				} else {
-					// Handle string responses by wrapping them in an object
+					// Handle other types by wrapping them in an object
 					returnData.push({
 						data: responseData,
 						json: responseData
