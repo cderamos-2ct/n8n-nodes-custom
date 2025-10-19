@@ -34,14 +34,14 @@
   "n8n": {
     "n8nNodesApiVersion": 1,
     "credentials": [
-      "dist/OnPrintShopApi.credentials.js",
-      "dist/MightyCallApi.credentials.js",
-      "dist/XPSApi.credentials.js"
+      "dist/credentials/OnPrintShopApi.credentials.js",
+      "dist/credentials/MightyCallApi.credentials.js",
+      "dist/credentials/XPSApi.credentials.js"
     ],
     "nodes": [
-      "dist/OnPrintShop.node.js",
-      "dist/MightyCall.node.js",
-      "dist/XPS.node.js"
+      "dist/nodes/OnPrintShop/OnPrintShop.node.js",
+      "dist/nodes/MightyCall/MightyCall.node.js",
+      "dist/nodes/XPSShip/XPS.node.js"
     ]
   },
   "devDependencies": {
